@@ -11,7 +11,7 @@ class App extends Component {
     };
   }
 
-  add = () => {
+  addItem = () => {
     // 5 karakterden küçükse eklemeyelim.
     const currentValue = this.state.userInput;
     const hasItem = this.state.todos.some((todo) => {
@@ -55,7 +55,7 @@ class App extends Component {
             onChange={this.onInputChange}
             className="form-control"
           />
-          <button onClick={this.add} className="btn btn-default">
+          <button onClick={this.addItem} className="btn btn-default">
             Ekle
           </button>
         </div>

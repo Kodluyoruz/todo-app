@@ -11,31 +11,32 @@ class App extends Component {
     };
   }
 
+  // Eğer input alanı boş değilse todos'a ekleye
   addItem = () => {
-    // 5 karakterden küçükse eklemeyelim.
+    // input'ta yazılı olan string değer
     const currentValue = this.state.userInput;
-    const hasItem = this.state.todos.some((todo) => {
-      return todo.content === currentValue;
-    });
-    if (currentValue.length < 5 || hasItem) {
-      return false;
-    }
 
-    this.setState(
-      {
-        todos: [...this.state.todos].concat([
-          {
-            content: currentValue,
-            id: Math.random(),
-          },
-        ]),
-      },
-      () => {
-        this.setState({
-          userInput: "",
-        });
-      }
-    );
+    if (this.state.userInput !== "") {
+      const userInput = {
+        // Delete yaparken kullanılabilmesi için bir her item için random bir id
+        id: Math.random(),
+        content: currentValue,
+      };
+
+      this.setState(
+        {
+          // Var olan array'i korumak için spread operatör kullanılıyor
+          // spread operatör ile şu anki "todos" array elemanlarını alıyoruz ve yenisini ekliyoruz
+          todos: [...this.state.todos, userInput],
+        },
+        () => {
+          // Input'tan alınan değer state'e eklendikten sonra input'u temizliyoruz
+          this.setState({
+            userInput: "",
+          });
+        }
+      );
+    }
   };
 
   onInputChange = (e) => {

@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import TodoList from "./components/TodoList/TodoList";
 import "./App.css";
+import TodoHeader from "./components/TodoHeader/TodoHeader";
 
 class App extends Component {
   constructor(props) {
@@ -39,6 +40,30 @@ class App extends Component {
     }
   };
 
+  deleteItem = (id) => {
+    const newArray = this.state.todos.filter((todo) => {
+      return todo.id !== id;
+    });
+    this.setState({
+      todos: newArray,
+    });
+  };
+
+  toggleItem = (id) => {
+    const newArr = this.state.todos.map((todo) => {
+      if (id === todo.id) {
+        let currentTodo = { ...todo };
+        currentTodo.checked = !currentTodo.checked;
+        return currentTodo;
+      } else {
+        return todo;
+      }
+    });
+    this.setState({
+      todos: newArr,
+    });
+  };
+
   onInputChange = (e) => {
     const newVal = e.target.value;
     this.setState({
@@ -49,6 +74,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
+        <TodoHeader />
         <div className="input">
           <input
             type="text"
@@ -56,13 +82,17 @@ class App extends Component {
             onChange={this.onInputChange}
             className="form-control"
           />
-          <button onClick={this.addItem} className="btn btn-default">
+          <button onClick={this.addItem} className="btn btn-primary">
             Ekle
           </button>
         </div>
         {this.state.todos.length > 0 && (
           <div className="list">
-            <TodoList todos={this.state.todos} />
+            <TodoList
+              todos={this.state.todos}
+              deleteItem={this.deleteItem}
+              toggleItem={this.toggleItem}
+            />
           </div>
         )}
       </div>

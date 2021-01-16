@@ -3,14 +3,18 @@ import TodoItem from "../TodoItem/TodoItem";
 import "./TodoList.css";
 
 function TodoList(props) {
+  const { todos, deleteItem, toggleItem } = props;
   return (
     <div>
       <ul>
-        {props.todos.map((todo) => {
+        {todos.map((todo) => {
           return (
-            <li className="list-group-item">
-              <TodoItem {...todo} key={todo.id} />
-            </li>
+            <TodoItem
+              {...todo}
+              key={todo.id}
+              deleteItem={deleteItem}
+              toggleItem={toggleItem}
+            />
           );
         })}
       </ul>

@@ -1,23 +1,13 @@
-## Todo App
+### Yapılan Değişiklikler
 
-Günlük, haftalık planlar yapıp bunları takip etme aşamasında kimi sadece kağıt ve kalem kullanırken kimi de sıklıkla tercih edilen todo list uygulamaları kullanır. React ile basit bir todo list uygulaması yapalım.
+-- h1 tag'ini içeren TodoHeader component'i eklendi.
 
-### Proje Nasıl Çalıştırılır
+Not: Her todo array elemanı id ve content property'lerini tutan birer objedir.
+{
+id,
+content
+}
 
-- Projeyi fork'ladıktan ya da indirdikten sonra projenin bulunduğu klasörde "npm install" komutu ile gerekli paketlerin yüklenmesi gerekiyor.
-- Daha sonra "npm run start" komutu ile uygulama başlatılabilir.
+-- toggleItem fonksiyonu "id" isimli bir parametre alıyor. Bu id ile şu anda işlem yapılan todo elemanını bularak, o elamana checked isimli bir property ekliyor. Bunu eklerken "currentTodo.checked = !currentTodo.checked" ifadesi kullanılmasının sebebi, eğer var olan bir checked property'si yoksa falsy bir değer olacağı için (!) ile bunun tersini alarak true bir değer elde etmektir. Eğer böyle bir property varsa ve şu anda true ise bu değer false olur. Bu checked property'sine bağlı olarak da TodoItem component'i içerisinde paragrafın (<p>) üstünü çizili hale getirek class'ı dinamik olarak değiştiriyoruz.
 
-### Proje Hakkında
-
-Bu basit to-do uygulamasında input'tan aldığımız ifade todo list'e ekleniyor. TodoList component'i "todos" prop'uyla aldığı array'i listeliyor. Her bir liste elemanını TodoIteme component'i temsil ediyor.
-
-### Yapılacaklar
-
-1. TodoHeader adlı bir component oluşturun. h1 etiketinde Todo List başlığını render edin.
-2. Listedeki bir to-do elamanının üstüne tıklandığında üstü çizili halde görünür hale getirin.
-3. Listeki her elemanın yanında gözükecek bir "Sil" butonu ile silme fonksiyonelliğini ekleyin.
-
-### İpuçları
-
-1. "Sil" butonunu TodoItem component'i içerisinde content'in yanına ekleyerek onClick event'ine verilecek bir fonksiyon ile silme fonksiyonelliğini ekleyebilirsiniz.
-2. Silme fonksiyonelliği için state içindeki "todos" üzerinde filter fonksiyonuyla filtreleme yapabilir ve state'i bu şekilde güncelleyebilirsiniz.
+-- deleteItem fonksiyonu "id" isimli bir parametre alıyor ve filter metodu ile o id'ye sahip obje array'dan çıkarılıyor ve state güncelleniyor.

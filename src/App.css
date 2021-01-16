@@ -17,3 +17,7 @@ ul > li:hover {
   justify-content: center;
   padding: 30px;
 }
+
+.checked {
+  text-decoration: line-through;
+}

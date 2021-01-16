@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import TodoList from "./components/TodoList/TodoList";
 import "./App.css";
 import TodoHeader from "./components/TodoHeader/TodoHeader";
+import Form from "./components/Form/Form";
 
 class App extends Component {
   constructor(props) {
@@ -75,17 +76,11 @@ class App extends Component {
     return (
       <div className="App">
         <TodoHeader />
-        <div className="input">
-          <input
-            type="text"
-            value={this.state.userInput}
-            onChange={this.onInputChange}
-            className="form-control"
-          />
-          <button onClick={this.addItem} className="btn btn-primary">
-            Ekle
-          </button>
-        </div>
+        <Form
+          userInput={this.state.userInput}
+          onInputChange={this.onInputChange}
+          addItem={this.addItem}
+        />
         {this.state.todos.length > 0 && (
           <div className="list">
             <TodoList

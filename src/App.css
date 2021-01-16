@@ -11,9 +11,3 @@ ul {
 ul > li:hover {
   background-color: #f5f5f5;
 }
-
-.input {
-  display: flex;
-  justify-content: center;
-  padding: 30px;
-}
